@@ -6,7 +6,7 @@ import {Feather} from '@expo/vector-icons';
 
 const IndexScreen = ({navigation}) => {
 
-    const {state, addBlogPost, removePost} = useContext(Context);
+    const {state, removePost} = useContext(Context);
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
@@ -20,10 +20,9 @@ const IndexScreen = ({navigation}) => {
 
     return (
         <>
-            <Button title="Add Post" onPress={addBlogPost}/>
             <FlatList
                 data={state}
-                keyExtractor={(blogPost) => blogPost.id}
+                keyExtractor={(blogPost) => blogPost.title}
                 renderItem={({item}) => {
                     return (
                         <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>

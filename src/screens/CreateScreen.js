@@ -1,15 +1,17 @@
 import React, {useContext} from 'react';
-import {Text, StyleSheet,} from "react-native";
+import {StyleSheet} from "react-native";
 import {Context} from "../context/BlogContext";
+import BlogPostForm from "../components/BlogPostForm";
 
-const CreateScreen = () => {
-    const {state} = useContext(Context);
-
-    return (
-        <>
-            <Text>Create</Text>
-        </>
-    );
+const CreateScreen = ({navigation}) => {
+    const {addBlogPost} = useContext(Context);
+    return(
+        <BlogPostForm
+            onSubmit={(title, content) => {
+                addBlogPost(title, content, () => navigation.navigate('Index'))
+            }}
+        />
+    )
 };
 
 const styles = StyleSheet.create({});
